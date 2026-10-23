@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "author": "Raphael Athenesi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -98,
+      "left": -211.2,
+      "rotate": 270,
+      "attrs": { "hornColor": "white" }
+    },
+    { "type": "board-mfrc522", "id": "rfid1", "top": 16.55, "left": 185.84, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -109.2,
+      "left": -111.4,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 4.8,
+      "left": -115.75,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -109.2,
+      "left": -73,
+      "attrs": { "color": "red", "flip": "" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -24,
+      "left": -77.35,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5", "rfid1:SDA", "blue", [ "h67.2", "v-57.6" ] ],
+    [ "rfid1:SCK", "esp:18", "blue", [ "h-19.2", "v38.4" ] ],
+    [ "esp:23", "rfid1:MOSI", "blue", [ "h57.6", "v38.4" ] ],
+    [ "esp:19", "rfid1:MISO", "blue", [ "h9.6", "v-9.6" ] ],
+    [ "esp:3V3", "rfid1:3.3V", "red", [ "h0.15", "v-38.4", "h124.8", "v134.4", "h9.6" ] ],
+    [ "esp:GND.2", "rfid1:GND", "black", [ "v-19.2", "h19.2", "v124.8", "h67.2", "v-28.8" ] ],
+    [ "rfid1:RST", "esp:21", "blue", [ "h-9.6", "v-19.2", "h-38.4", "v-19.2" ] ],
+    [ "esp:13", "servo1:PWM", "orange", [ "h0" ] ],
+    [ "esp:5V", "servo1:V+", "red", [ "h0" ] ],
+    [ "esp:GND.1", "servo1:GND", "#8f4814", [ "h-134.25" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ],
+    [ "esp:26", "r1:2", "green", [ "h-9.45", "v-19.2", "h-76.8" ] ],
+    [ "esp:GND.1", "led1:C", "black", [ "h-19.05", "v-38.4", "h-19.2" ] ],
+    [ "esp:27", "r2:2", "red", [ "h0" ] ],
+    [ "r2:1", "led2:A", "red", [ "h0" ] ],
+    [ "esp:GND.1", "led2:C", "black", [ "h-9.45", "v-76.8", "h-48", "v-144" ] ]
+  ],
+  "dependencies": {}
+}
